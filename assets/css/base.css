@@ -9,6 +9,10 @@ html, body {
   overscroll-behavior: none;
 }
 
+body.auth-page {
+  overflow: hidden;
+}
+
 body {
   background-image: url('../bg.jpg');
   background-repeat: no-repeat;
