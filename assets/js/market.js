@@ -99,11 +99,25 @@ class MarketPage {
       this.loadingPrices.add(symbol);
       this.updateCardLoadingState(symbol, true);
       
-      const priceData = await HttpClient.get(`${API_CONFIG.endpoints.prices}/${symbol}`);
-      console.log(`Loaded price for ${symbol}:`, priceData);
+      // Load both price and trend data like in SPA
+      const [priceData, trendData] = await Promise.allSettled([
+        HttpClient.get(`${API_CONFIG.endpoints.prices}/${symbol}`),
+        HttpClient.get(`/api/price/trend/${symbol}`)
+      ]);
       
-      this.prices[symbol] = priceData;
-      this.updateCardPrice(symbol, priceData);
+      const price = priceData.status === 'fulfilled' ? priceData.value : null;
+      const trend = trendData.status === 'fulfilled' ? trendData.value : null;
+      
+      // Combine price and trend data
+      const combinedData = price ? {
+        ...price,
+        priceChange: trend?.priceChange || null
+      } : null;
+      
+      console.log(`Loaded price for ${symbol}:`, combinedData);
+      
+      this.prices[symbol] = combinedData;
+      this.updateCardPrice(symbol, combinedData);
       
     } catch (error) {
       console.error(`Failed to load price for ${symbol}:`, error);

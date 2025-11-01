@@ -24,12 +24,13 @@
 /* Market Grid */
 .market-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
-  margin-top: 2rem;
+  margin: 1.5rem 0;
 }
 
 .market-grid-item {
+  min-height: 160px;
   position: relative;
   display: block;
   height: 100%;
@@ -269,15 +270,16 @@
   color: #333;
 }
 
-/* Responsive */
+/* Responsive - Media Queries für Responsivität */
+@media (max-width: 1024px) {  /* Für Tablets/Mittelgroße Screens: Max 2 pro Reihe */
+  .market-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (max-width: 768px) {
   .market-page {
     padding: 1rem;
-  }
-  
-  .market-grid {
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 1rem;
   }
   
   .page-greeting {
@@ -291,7 +293,7 @@
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 576px) {  /* Für Mobile: 1 pro Reihe */
   .market-grid {
     grid-template-columns: 1fr;
   }
