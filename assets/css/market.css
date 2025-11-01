@@ -268,46 +268,7 @@
   color: #333;
 }
 
-/* Navigation */
-.nav-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  background: rgba(26, 26, 26, 0.9);
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 1rem 0;
-  z-index: 1000;
-}
-
-.nav-content {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.nav-brand {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #c1121f;
-  text-decoration: none;
-}
-
-.nav-actions {
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-}
-
-.user-info {
-  color: #9ca3af;
-  font-size: 14px;
-}
+/* Navigation - Now handled by navbar.css */
 
 /* Responsive */
 @media (max-width: 768px) {
