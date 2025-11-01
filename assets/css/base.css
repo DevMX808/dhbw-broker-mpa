@@ -1,13 +1,24 @@
-/* Base Styles - Gemeinsame Styles für alle Seiten */
-* {
-  box-sizing: border-box;
+/* Base Styles - Exakt aus SPA übernommen */
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding-top: 60px;
+  font-family: 'Montserrat', sans-serif;
+  overscroll-behavior: none;
 }
 
 body {
-  font-family: 'Montserrat', sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f8f9fa;
+  background-image: url('https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 .page {
@@ -27,10 +38,6 @@ body {
 }
 
 /* Form Styles */
-.form-group {
-  margin-bottom: 1rem;
-  position: relative;
-}
 
 .form-control {
   background-color: #eee;
@@ -42,25 +49,38 @@ body {
   font-size: 14px;
 }
 
-.form-control.error {
-  border: 2px solid #dc3545;
-  background-color: #fee;
+
+
+.error-message {
+  background-color: #ffebee;
+  color: #c1121f;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 15px;
+  border: 1px solid #ffcdd2;
+  font-size: 14px;
 }
 
 .field-error {
-  color: #dc3545;
+  color: #c1121f;
   font-size: 12px;
-  margin-top: 4px;
+  margin-top: 5px;
+  margin-bottom: 10px;
   display: block;
 }
 
-.error-message {
-  background-color: #f8d7da;
-  color: #721c24;
-  padding: 12px;
-  border-radius: 4px;
-  margin-bottom: 1rem;
-  font-size: 14px;
+.form-control.error {
+  border: 1px solid #c1121f;
+  box-shadow: 0 0 0 3px rgba(193, 18, 31, 0.15);
+}
+
+.form-group {
+  margin-bottom: 2px;
+  position: relative;
+}
+
+.form-actions--spaced {
+  margin-top: 1rem;
 }
 
 /* Button Styles */
@@ -128,9 +148,9 @@ body {
   display: inline-block;
   width: 16px;
   height: 16px;
-  border: 2px solid #ffffff;
+  border: 2px solid rgba(255, 255, 255, 0.3);
   border-radius: 50%;
-  border-top-color: transparent;
+  border-top-color: #fff;
   animation: spin 1s ease-in-out infinite;
   margin-right: 8px;
 }

@@ -1,6 +1,9 @@
-// API Configuration
+// API Configuration - unterstützt sowohl lokal als auch Heroku
 const API_CONFIG = {
-  baseUrl: 'http://localhost:8080',
+  // Versuche zuerst lokal, dann Heroku als Fallback
+  baseUrl: window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
+    ? 'http://localhost:8080' 
+    : 'https://rocky-atoll-88358-b10b362cee67.herokuapp.com',
   endpoints: {
     login: '/auth/login',
     register: '/auth/register',
