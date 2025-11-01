@@ -23,12 +23,11 @@
     <div class="auth-container" id="container">
       <!-- Sign Up Form -->
       <div class="form-container sign-up-container">
-        <form class="auth-form" id="signUpForm" novalidate>
+        <form id="signUpForm" novalidate>
           <h1>Konto erstellen</h1>
           
           <div class="form-group">
             <input
-              class="form-control"
               id="firstName"
               type="text"
               placeholder="Vorname"
@@ -40,7 +39,6 @@
 
           <div class="form-group">
             <input
-              class="form-control"
               id="lastName"
               type="text"
               placeholder="Nachname"
@@ -52,7 +50,6 @@
 
           <div class="form-group">
             <input
-              class="form-control"
               id="signUpEmail"
               type="email"
               placeholder="E-Mail"
@@ -64,7 +61,6 @@
 
           <div class="form-group">
             <input
-              class="form-control"
               id="signUpPassword"
               type="password"
               placeholder="Passwort"
@@ -75,7 +71,7 @@
           </div>
           
           <div class="form-actions--spaced">
-            <button class="btn" type="submit" id="signUpButton">
+            <button type="submit" id="signUpButton">
               Registrieren
             </button>
           </div>
@@ -84,12 +80,11 @@
 
       <!-- Sign In Form -->
       <div class="form-container sign-in-container">
-        <form class="auth-form" id="signInForm" novalidate>
+        <form id="signInForm" novalidate>
           <h1>Anmelden</h1>
 
           <div class="form-group">
             <input
-              class="form-control"
               id="email"
               type="email"
               placeholder="E-Mail"
@@ -101,7 +96,6 @@
 
           <div class="form-group">
             <input
-              class="form-control"
               id="password"
               type="password"
               placeholder="Passwort"
@@ -113,7 +107,7 @@
 
           <p>Passwort vergessen?</p>
 
-          <button class="btn" type="submit" id="signInButton">
+          <button type="submit" id="signInButton">
             Anmelden
           </button>
         </form>
@@ -125,12 +119,12 @@
           <div class="overlay-panel overlay-left">
             <h1>Willkommen zurück bei <span class="highlight-red">Ledgero</span>!</h1>
             <p>Melden Sie sich an, um mit dem Trading in unserem Demo-Broker fortzufahren</p>
-            <button class="btn ghost" type="button" id="showSignIn">Anmelden</button>
+            <button class="ghost" type="button" id="showSignIn">Anmelden</button>
           </div>
           <div class="overlay-panel overlay-right">
             <h1>Hallo, zukünftiger <span class="highlight-red">Trader</span>!</h1>
             <p>Geben Sie Ihre Daten ein und starten Sie Ihr Trading-Abenteuer mit Ledgero, unserem Demo-Broker</p>
-            <button class="btn ghost" type="button" id="showSignUp">Registrieren</button>
+            <button class="ghost" type="button" id="showSignUp">Registrieren</button>
           </div>
         </div>
       </div>

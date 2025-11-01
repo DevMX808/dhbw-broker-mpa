@@ -7,25 +7,6 @@ html, body {
   padding-top: 60px;
   font-family: 'Montserrat', sans-serif;
   overscroll-behavior: none;
-  overflow-x: hidden; /* Horizontale Scrollbar verhindern */
-}
-
-/* Scrollbar Styles für bessere Darstellung */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: rgba(26, 26, 26, 0.1);
-}
-
-::-webkit-scrollbar-thumb {
-  background: rgba(193, 18, 31, 0.3);
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(193, 18, 31, 0.5);
 }
 
 body {
@@ -64,8 +45,6 @@ body {
   padding: 12px 15px;
   margin: 4px 0;
   width: 100%;
-  border-radius: 0;
-  font-size: 14px;
 }
 
 
