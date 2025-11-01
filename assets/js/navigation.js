@@ -56,24 +56,29 @@ class Navigation {
   }
 
   updateUserInfo() {
-    const user = TokenManager.getUserFromToken();
+    const user = TokenManager.getUserInfo();
     if (user) {
-      // Update greeting
-      const userGreeting = document.getElementById('userGreeting');
-      if (userGreeting) {
-        userGreeting.textContent = `Hallo, ${user.firstName || 'Trader'}`;
+      // No greeting in navbar anymore - it's been removed from HTML
+
+      // Update page greeting if present with real name
+      const pageGreeting = document.getElementById('pageGreeting');
+      if (pageGreeting) {
+        const fullName = `${user.firstName || ''} ${user.lastName || ''}`.trim();
+        const displayName = fullName || user.email?.split('@')[0] || 'Trader';
+        pageGreeting.innerHTML = `<span>Hallo</span>, ${displayName}.`;
       }
 
-      // Update user info in market page
+      // Update user info in footer/details if present with real name
       const userInfo = document.getElementById('userInfo');
       if (userInfo) {
-        userInfo.textContent = `${user.firstName} ${user.lastName} (${user.email})`;
+        const fullName = `${user.firstName || ''} ${user.lastName || ''}`.trim();
+        userInfo.textContent = `Willkommen, ${fullName || user.email}`;
       }
     }
   }
 
   checkAdminRole() {
-    const user = TokenManager.getUserFromToken();
+    const user = TokenManager.getUserInfo();
     if (user && user.roles && user.roles.includes('ADMIN')) {
       // Show admin links
       const adminLink = document.getElementById('adminLink');

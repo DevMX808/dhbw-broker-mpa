@@ -33,11 +33,16 @@ class MarketPage {
   setupUserInfo() {
     const userInfo = TokenManager.getUserInfo();
     if (userInfo) {
-      const fullName = `${userInfo.firstName} ${userInfo.lastName}`.trim();
-      this.userInfo.textContent = `Willkommen, ${fullName || userInfo.email}`;
+      // Update only the page-specific user info, not the navbar
+      if (this.userInfo) {
+        const fullName = `${userInfo.firstName || ''} ${userInfo.lastName || ''}`.trim();
+        this.userInfo.textContent = `Willkommen, ${fullName || userInfo.email}`;
+      }
       
-      if (userInfo.firstName || userInfo.lastName) {
-        this.pageGreeting.innerHTML = `<span>Hallo</span>, ${userInfo.firstName || userInfo.lastName}.`;
+      if (this.pageGreeting) {
+        const fullName = `${userInfo.firstName || ''} ${userInfo.lastName || ''}`.trim();
+        const displayName = fullName || userInfo.email?.split('@')[0] || 'Trader';
+        this.pageGreeting.innerHTML = `<span>Hallo</span>, ${displayName}.`;
       }
     }
   }

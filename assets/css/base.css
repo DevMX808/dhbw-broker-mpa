@@ -37,8 +37,6 @@ body {
   padding: 0;
 }
 
-/* Form Styles */
-
 .form-control {
   background-color: #eee;
   border: none;
@@ -46,8 +44,6 @@ body {
   margin: 4px 0;
   width: 100%;
 }
-
-
 
 .error-message {
   background-color: #ffebee;

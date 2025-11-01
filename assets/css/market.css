@@ -268,8 +268,6 @@
   color: #333;
 }
 
-/* Navigation - Now handled by navbar.css */
-
 /* Responsive */
 @media (max-width: 768px) {
   .market-page {

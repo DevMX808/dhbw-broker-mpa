@@ -60,11 +60,14 @@ class TokenManager {
     const payload = this.parseJWT(token);
     if (!payload) return null;
     
+    // Debug: Log the payload to see what fields are available
+    console.log('JWT Payload:', payload);
+    
     return {
       id: payload.sub,
       email: payload.email,
-      firstName: payload.given_name || '',
-      lastName: payload.family_name || '',
+      firstName: payload.given_name || payload.firstName || '',
+      lastName: payload.family_name || payload.lastName || '',
       roles: payload.roles || []
     };
   }
