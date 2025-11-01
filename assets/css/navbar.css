@@ -1,4 +1,3 @@
-/* Navbar Styles - Exakt aus SPA übernommen */
 .navbar {
   display: flex;
   align-items: center;
@@ -167,7 +166,6 @@
   }
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   .navbar {
     justify-content: space-between;
@@ -193,7 +191,6 @@
   }
 }
 
-/* Hide navbar on auth pages */
 .hide-navbar .navbar {
   display: none;
 }

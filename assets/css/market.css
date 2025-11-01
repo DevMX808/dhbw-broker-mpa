@@ -21,7 +21,6 @@
   color: #c1121f;
 }
 
-/* Market Grid */
 .market-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -48,7 +47,6 @@
   color: inherit;
 }
 
-/* Market Card - Exakt aus SPA */
 .market-card {
   display: flex;
   flex-direction: column;
@@ -253,7 +251,6 @@
   }
 }
 
-/* Empty State */
 .empty-state {
   text-align: center;
   padding: 3rem 1rem;
@@ -270,8 +267,7 @@
   color: #333;
 }
 
-/* Responsive - Media Queries für Responsivität */
-@media (max-width: 1024px) {  /* Für Tablets/Mittelgroße Screens: Max 2 pro Reihe */
+@media (max-width: 1024px) {
   .market-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -293,7 +289,7 @@
   }
 }
 
-@media (max-width: 576px) {  /* Für Mobile: 1 pro Reihe */
+@media (max-width: 576px) {
   .market-grid {
     grid-template-columns: 1fr;
   }

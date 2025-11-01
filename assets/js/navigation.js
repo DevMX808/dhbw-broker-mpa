@@ -1,4 +1,3 @@
-// Navigation functionality for MPA
 class Navigation {
   constructor() {
     this.mobileMenuOpen = false;
@@ -111,7 +110,6 @@ class Navigation {
   }
 }
 
-// Initialize navigation when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
   // Only initialize navigation if we're not on the auth page
   if (!document.body.classList.contains('auth-page')) {
@@ -119,7 +117,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-// Export for use in other modules
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = Navigation;
 }

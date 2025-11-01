@@ -1,6 +1,4 @@
-// API Configuration - unterstützt sowohl lokal als auch Heroku
 const API_CONFIG = {
-  // Versuche zuerst lokal, dann Heroku als Fallback
   baseUrl: window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
     ? 'http://localhost:8080' 
     : 'https://rocky-atoll-88358-b10b362cee67.herokuapp.com',
@@ -12,7 +10,6 @@ const API_CONFIG = {
   }
 };
 
-// Token Management
 class TokenManager {
   static getToken() {
     return localStorage.getItem('accessToken');
@@ -60,7 +57,6 @@ class TokenManager {
     const payload = this.parseJWT(token);
     if (!payload) return null;
     
-    // Debug: Log the payload to see what fields are available
     console.log('JWT Payload:', payload);
     
     return {
@@ -73,7 +69,6 @@ class TokenManager {
   }
 }
 
-// HTTP Client
 class HttpClient {
   static async request(url, options = {}) {
     const token = TokenManager.getToken();
@@ -94,7 +89,7 @@ class HttpClient {
     try {
       const response = await fetch(`${API_CONFIG.baseUrl}${url}`, config);
       
-      // Check if response is HTML (error page)
+
       const contentType = response.headers.get('content-type');
       if (contentType && contentType.includes('text/html')) {
         throw new Error('Server returned HTML instead of JSON - possible authentication error');
@@ -139,7 +134,6 @@ class HttpClient {
   }
 }
 
-// Form Validation Utilities
 class FormValidator {
   static validateEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -185,13 +179,13 @@ class FormValidator {
   }
 
   static showFieldError(fieldElement, errorMessage) {
-    // Remove existing error
+
     this.clearFieldError(fieldElement);
     
-    // Add error class
+
     fieldElement.classList.add('error');
     
-    // Create and add error message
+
     const errorDiv = document.createElement('div');
     errorDiv.className = 'field-error';
     errorDiv.textContent = errorMessage;
@@ -219,25 +213,24 @@ class FormValidator {
   }
 
   static showGlobalError(formElement, message) {
-    // Remove existing global error
+
     const existingError = formElement.querySelector('.error-message');
     if (existingError) {
       existingError.remove();
     }
     
-    // Create new error message
+
     const errorDiv = document.createElement('div');
     errorDiv.className = 'error-message';
     errorDiv.setAttribute('role', 'alert');
     errorDiv.setAttribute('aria-live', 'polite');
     errorDiv.textContent = message;
     
-    // Insert at the beginning of the form
+
     formElement.insertBefore(errorDiv, formElement.firstChild);
   }
 }
 
-// Loading State Management
 class LoadingManager {
   static showLoading(buttonElement) {
     if (!buttonElement) return;
@@ -267,7 +260,6 @@ class LoadingManager {
   }
 }
 
-// Navigation Helper
 class Navigation {
   static redirectTo(path) {
     window.location.href = path;
@@ -290,7 +282,7 @@ class Navigation {
   }
 }
 
-// Make utilities globally available
+
 window.TokenManager = TokenManager;
 window.HttpClient = HttpClient;
 window.FormValidator = FormValidator;

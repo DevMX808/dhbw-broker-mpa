@@ -1,4 +1,3 @@
-// Auth Page JavaScript
 class AuthPage {
   constructor() {
     this.container = document.getElementById('container');
@@ -216,7 +215,6 @@ class AuthPage {
   }
 }
 
-// Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
   new AuthPage();
 });
