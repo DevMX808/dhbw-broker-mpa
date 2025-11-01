@@ -1,8 +1,9 @@
-/* Market Page Specific Styles - Exakt aus SPA übernommen */
 .market-page {
-  padding: 2rem;
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
+  padding: 2rem 1rem;
+  height: calc(100vh - 80px);
+  overflow-y: auto;
 }
 
 .page-header {
@@ -11,13 +12,13 @@
 
 .page-greeting {
   font-size: 2rem;
-  font-weight: 300;
-  color: #eee;
-  margin-bottom: 1rem;
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+  color: #e6e6e6;
 }
 
 .page-greeting span {
-  font-weight: 600;
+  color: #c1121f;
 }
 
 /* Market Grid */

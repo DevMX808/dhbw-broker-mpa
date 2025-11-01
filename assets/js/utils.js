@@ -7,8 +7,8 @@ const API_CONFIG = {
   endpoints: {
     login: '/auth/login',
     register: '/auth/register',
-    symbols: '/api/symbols',
-    prices: '/api/prices'
+    symbols: '/api/price/symbols',
+    prices: '/api/price/quote'
   }
 };
 
