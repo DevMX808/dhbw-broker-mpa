@@ -223,7 +223,7 @@ body {
   }
 }
 
-/* Admin Panel Styles - exakt wie SPA */
+/* Admin Panel Styles - 1:1 kopiert von SPA */
 .admin-users-container {
   padding: 20px;
   color: white;
@@ -232,14 +232,11 @@ body {
 .admin-users-container h2 {
   margin-bottom: 20px;
   color: white;
-  font-size: 1.5rem;
-  font-weight: 600;
 }
 
 .admin-users-container .loading {
   color: white;
   padding: 20px;
-  text-align: center;
 }
 
 .admin-users-container .error {
@@ -264,102 +261,73 @@ body {
   background-color: #ff5252;
 }
 
-.users-table-container {
-  overflow-x: auto;
-}
-
-.users-table {
+.users-table-container .users-table {
   width: 100%;
   border-collapse: collapse;
   color: white;
-  background: transparent;
 }
 
-.users-table th {
+.users-table-container .users-table th {
   text-align: left;
   padding: 12px;
   background-color: rgba(255, 255, 255, 0.1);
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   color: white;
   font-weight: 600;
-  font-size: 0.9rem;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
 }
 
-.users-table td {
+.users-table-container .users-table td {
   padding: 12px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   color: white;
 }
 
-.users-table td.balance {
+.users-table-container .users-table td.balance {
   font-family: monospace;
   text-align: right;
 }
 
-.users-table tbody tr:hover {
+.users-table-container .users-table tbody tr:hover {
   background-color: rgba(255, 255, 255, 0.05);
 }
 
-.status-active {
+.users-table-container .status-active {
   color: #4caf50;
   font-weight: 500;
 }
 
-.status-inactive {
+.users-table-container .status-inactive {
   color: #ff9800;
   font-weight: 500;
 }
 
-.no-users {
+.users-table-container .no-users {
   text-align: center;
   padding: 40px;
   color: rgba(255, 255, 255, 0.7);
   font-style: italic;
 }
 
+/* Erweiterte Stile für zusätzliche Spalten aus Screenshot */
 .action-btn {
-  padding: 6px 12px;
+  background-color: #f44336;
+  color: white;
   border: none;
-  border-radius: 4px;
+  padding: 4px 8px;
+  border-radius: 3px;
+  font-size: 11px;
   cursor: pointer;
-  font-size: 0.8rem;
   font-weight: 500;
-  transition: background-color 0.2s;
+}
+
+.action-btn:hover {
+  background-color: #d32f2f;
 }
 
 .activate-btn {
   background-color: #4caf50;
-  color: white;
 }
 
 .activate-btn:hover {
   background-color: #45a049;
-}
-
-.block-btn {
-  background-color: #f44336;
-  color: white;
-}
-
-.block-btn:hover {
-  background-color: #da190b;
-}
-
-/* Responsive Admin Table */
-@media (max-width: 768px) {
-  .users-table {
-    font-size: 0.8rem;
-  }
-  
-  .users-table th,
-  .users-table td {
-    padding: 8px 6px;
-  }
-  
-  .action-btn {
-    padding: 4px 8px;
-    font-size: 0.7rem;
-  }
 }

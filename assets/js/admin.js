@@ -153,9 +153,9 @@ class AdminPage {
         <tbody>
           ${this.users.map(user => `
             <tr>
-              <td>${this.escapeHtml(user.firstName || 'N/A')}</td>
-              <td>${this.escapeHtml(user.lastName || 'N/A')}</td>
-              <td>${this.escapeHtml(user.email || 'N/A')}</td>
+              <td>${this.escapeHtml(user.firstName || '')}</td>
+              <td>${this.escapeHtml(user.lastName || '')}</td>
+              <td>${this.escapeHtml(user.email || '')}</td>
               <td>${this.escapeHtml(user.role || 'USER')}</td>
               <td>
                 <span class="${this.getStatusClass(user.status)}">
@@ -164,7 +164,7 @@ class AdminPage {
               </td>
               <td class="balance">${this.formatBalance(user.balance)}</td>
               <td>
-                <button class="action-btn ${user.status === 'ACTIVATED' ? 'block-btn' : 'activate-btn'}" 
+                <button class="action-btn ${user.status === 'ACTIVATED' ? '' : 'activate-btn'}" 
                         onclick="window.adminPage.toggleUserStatus('${user.userId}', '${user.status}')">
                   ${user.status === 'ACTIVATED' ? 'Blockieren' : 'Aktivieren'}
                 </button>
@@ -197,14 +197,14 @@ class AdminPage {
     if (status === 'ACTIVATED') {
       return 'Aktiv';
     } else if (status === 'DEACTIVATED') {
-      return 'Deaktiviert';
+      return 'Blockiert';
     }
     return 'Unbekannt';
   }
 
   formatBalance(balance) {
     if (balance == null) {
-      return '-';
+      return '0.00 USD';
     }
     return Number(balance).toFixed(2) + ' USD';
   }
