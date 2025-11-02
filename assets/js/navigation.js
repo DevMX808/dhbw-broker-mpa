@@ -1,3 +1,9 @@
+
+(function () {
+  if (typeof window !== 'undefined' && window.Navigation) {
+    return;
+  }
+
 class Navigation {
   constructor() {
     this.mobileMenuOpen = false;
@@ -116,35 +122,31 @@ class Navigation {
   }
 }
 
-if (typeof window !== 'undefined') {
-  window.Navigation = Navigation;
-}
-
-// Initialize navigation globally
-let navigationInstance = null;
-
-document.addEventListener('DOMContentLoaded', () => {
-  // Only initialize navigation if we're not on the auth page and not already initialized
-  if (!document.body.classList.contains('auth-page') && !navigationInstance) {
-    navigationInstance = new Navigation();
+  // am Ende der Klasse:
+  if (typeof window !== 'undefined') {
+    window.Navigation = Navigation;
   }
-  
-  // Fallback: Ensure logout buttons work even if navigation fails
-  const logoutBtns = document.querySelectorAll('#logoutBtn, #mobileLogoutBtn');
-  logoutBtns.forEach(btn => {
-    if (btn && !btn.hasAttribute('data-logout-initialized')) {
-      btn.setAttribute('data-logout-initialized', 'true');
+
+  // bisher hattest du hier schon ein DOMContentLoaded – das bleibt:
+  let navigationInstance = null;
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const isAuthPage = document.body.classList.contains('auth-page');
+
+    if (!isAuthPage && !navigationInstance) {
+      navigationInstance = new Navigation();
+    }
+
+    // Fallback: Logout-Buttons anklemmen
+    const logoutBtns = document.querySelectorAll('#logoutBtn, #mobileLogoutBtn');
+    logoutBtns.forEach(btn => {
       btn.addEventListener('click', (e) => {
         e.preventDefault();
-        if (confirm('Sind Sie sicher, dass Sie sich abmelden möchten?')) {
-          TokenManager.clearToken();
-          window.location.href = 'account.html';
+        if (window.TokenManager) {
+          window.TokenManager.clearTokens();
         }
+        window.location.href = 'account.html';
       });
-    }
+    });
   });
-});
-
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = Navigation;
-}
+})();
