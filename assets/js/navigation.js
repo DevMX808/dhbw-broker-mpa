@@ -5,9 +5,8 @@ class Navigation {
   }
 
   initializeNavigation() {
-    console.log('Initializing navigation...'); // Debug log
+    console.log('Initializing navigation...');
     
-    // Mobile menu toggle
     const mobileMenuToggle = document.getElementById('mobileMenuToggle');
     const mobileMenu = document.getElementById('mobileMenu');
     
@@ -17,9 +16,8 @@ class Navigation {
       });
     }
 
-    // Logout buttons
     const logoutBtns = document.querySelectorAll('#logoutBtn, #mobileLogoutBtn');
-    console.log('Found logout buttons:', logoutBtns.length); // Debug log
+    console.log('Found logout buttons:', logoutBtns.length);
     
     logoutBtns.forEach(btn => {
       if (btn) {
