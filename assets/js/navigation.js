@@ -151,14 +151,22 @@ document.addEventListener('DOMContentLoaded', () => {
     
     mobileMenuToggle.addEventListener('click', (e) => {
       e.preventDefault();
-      const isOpen = mobileMenu.style.display === 'flex';
+      console.log('Mobile menu toggle clicked!'); // Debug
+      
+      // Check if menu is currently open by checking both inline style and computed style
+      const currentDisplay = window.getComputedStyle(mobileMenu).display;
+      const isOpen = currentDisplay === 'flex';
+      
+      console.log('Current display:', currentDisplay, 'Is open:', isOpen); // Debug
       
       if (isOpen) {
         mobileMenuToggle.classList.remove('active');
         mobileMenu.style.display = 'none';
+        console.log('Closing menu'); // Debug
       } else {
         mobileMenuToggle.classList.add('active');
         mobileMenu.style.display = 'flex';
+        console.log('Opening menu'); // Debug
       }
     });
   }
