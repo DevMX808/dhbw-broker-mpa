@@ -141,6 +141,27 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
   });
+  
+  // Fallback: Ensure mobile menu works even if navigation fails
+  const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+  const mobileMenu = document.getElementById('mobileMenu');
+  
+  if (mobileMenuToggle && mobileMenu && !mobileMenuToggle.hasAttribute('data-mobile-initialized')) {
+    mobileMenuToggle.setAttribute('data-mobile-initialized', 'true');
+    
+    mobileMenuToggle.addEventListener('click', (e) => {
+      e.preventDefault();
+      const isOpen = mobileMenu.style.display === 'flex';
+      
+      if (isOpen) {
+        mobileMenuToggle.classList.remove('active');
+        mobileMenu.style.display = 'none';
+      } else {
+        mobileMenuToggle.classList.add('active');
+        mobileMenu.style.display = 'flex';
+      }
+    });
+  }
 });
 
 if (typeof module !== 'undefined' && module.exports) {
