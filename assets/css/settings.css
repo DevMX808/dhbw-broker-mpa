@@ -14,6 +14,34 @@
   margin: 0 auto;
 }
 
+/* Empty State für Settings */
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.empty-state .empty-icon {
+  font-size: 4rem;
+  margin-bottom: 20px;
+  opacity: 0.5;
+}
+
+.empty-state h3 {
+  color: white;
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+}
+
+.empty-state p {
+  margin-bottom: 25px;
+  font-size: 1rem;
+}
+
+.empty-state .btn {
+  margin-top: 10px;
+}
+
 .settings-section {
   background: rgba(255, 255, 255, 0.1);
   border-radius: 8px;
