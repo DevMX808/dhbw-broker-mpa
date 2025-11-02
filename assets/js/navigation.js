@@ -116,6 +116,10 @@ class Navigation {
   }
 }
 
+if (typeof window !== 'undefined') {
+  window.Navigation = Navigation;
+}
+
 // Initialize navigation globally
 let navigationInstance = null;
 

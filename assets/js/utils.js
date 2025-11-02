@@ -287,5 +287,4 @@ window.TokenManager = TokenManager;
 window.HttpClient = HttpClient;
 window.FormValidator = FormValidator;
 window.LoadingManager = LoadingManager;
-window.Navigation = Navigation;
 window.API_CONFIG = API_CONFIG;
