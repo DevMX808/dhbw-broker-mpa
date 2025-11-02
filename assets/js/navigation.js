@@ -155,10 +155,14 @@
     window.Navigation = Navigation;
   }
 
+  if (typeof module !== 'undefined' && module.exports) {
+    module.exports = Navigation;
+  }
+
   document.addEventListener('DOMContentLoaded', () => {
     const isAuthPage = document.body.classList.contains('auth-page');
     if (!isAuthPage) {
-      new Navigation();
+      window.navigationInstance = new Navigation();
     }
   });
 })();

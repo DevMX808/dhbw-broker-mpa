@@ -14,7 +14,9 @@ class AuthPage {
   init() {
     // Check if user is already authenticated
     if (TokenManager.isAuthenticated()) {
-      Navigation.redirectToMarket();
+      if (typeof window.Navigation !== 'undefined' && window.Navigation.redirectToMarket) {
+        window.Navigation.redirectToMarket();
+      }
       return;
     }
 
@@ -144,7 +146,9 @@ class AuthPage {
         
         // Small delay for better UX
         setTimeout(() => {
-          Navigation.redirectToMarket();
+          if (typeof window.Navigation !== 'undefined' && window.Navigation.redirectToMarket) {
+            window.Navigation.redirectToMarket();
+          }
         }, 500);
       } else {
         throw new Error('Keine Zugangsdaten in der Antwort erhalten');
@@ -192,7 +196,9 @@ class AuthPage {
         
         // Small delay for better UX
         setTimeout(() => {
-          Navigation.redirectToMarket();
+          if (typeof window.Navigation !== 'undefined' && window.Navigation.redirectToMarket) {
+            window.Navigation.redirectToMarket();
+          }
         }, 500);
       } else {
         throw new Error('Keine Zugangsdaten in der Antwort erhalten');
