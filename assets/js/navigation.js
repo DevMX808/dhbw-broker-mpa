@@ -78,13 +78,41 @@ class Navigation {
 
   checkAdminRole() {
     const user = TokenManager.getUserInfo();
-    if (user && user.roles && user.roles.includes('ADMIN')) {
-      // Show admin links
-      const adminLink = document.getElementById('adminLink');
-      const mobileAdminLink = document.getElementById('mobileAdminLink');
+    console.log('🔍 Checking admin role...');
+    console.log('User info:', user);
+    
+    if (user && user.roles) {
+      console.log('User roles:', user.roles);
+      console.log('Has ADMIN role:', user.roles.includes('ADMIN'));
       
-      if (adminLink) adminLink.style.display = 'block';
-      if (mobileAdminLink) mobileAdminLink.style.display = 'block';
+      if (user.roles.includes('ADMIN')) {
+        console.log('✅ User has ADMIN role, showing admin links');
+        
+        // Show admin links
+        const adminLink = document.getElementById('adminLink');
+        const mobileAdminLink = document.getElementById('mobileAdminLink');
+        
+        console.log('Desktop admin link element:', adminLink);
+        console.log('Mobile admin link element:', mobileAdminLink);
+        
+        if (adminLink) {
+          adminLink.style.display = 'block';
+          console.log('✅ Desktop admin link shown');
+        } else {
+          console.log('❌ Desktop admin link element not found');
+        }
+        
+        if (mobileAdminLink) {
+          mobileAdminLink.style.display = 'block';
+          console.log('✅ Mobile admin link shown');
+        } else {
+          console.log('❌ Mobile admin link element not found');
+        }
+      } else {
+        console.log('❌ User does not have ADMIN role');
+      }
+    } else {
+      console.log('❌ No user info or roles found');
     }
   }
 

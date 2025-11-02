@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <title>Admin - Ledgero Demo Broker</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/market.css">
+  <link rel="stylesheet" href="assets/css/navbar.css">
+</head>
+<body>
+  <!-- Navigation Header -->
+  <nav class="navbar">
+    <div class="navbar-logo">
+      <span class="logo-text">LEDGERO</span>
+    </div>
+
+    <div class="burger" id="mobileMenuToggle">
+      <span class="burger-line"></span>
+      <span class="burger-line"></span>
+      <span class="burger-line"></span>
+    </div>
+
+    <div class="navbar-center">
+      <a href="market.html" class="nav-link">Markt</a>
+      <a href="portfolio.html" class="nav-link">Portfolio</a>
+      <a href="settings.html" class="nav-link">Einstellungen</a>
+      <a href="admin.html" class="nav-link active-link" id="adminLink" style="display: none;">Admin</a>
+    </div>
+
+    <div class="navbar-right">
+      <button class="logout-button" id="logoutBtn">Abmelden</button>
+    </div>
+
+    <div class="mobile-menu" id="mobileMenu" style="display: none;">
+      <a href="market.html" class="nav-link">Markt</a>
+      <a href="portfolio.html" class="nav-link">Portfolio</a>
+      <a href="settings.html" class="nav-link">Einstellungen</a>
+      <a href="admin.html" class="nav-link" id="mobileAdminLink" style="display: none;">Admin</a>
+      <button class="logout-button" id="mobileLogoutBtn">Abmelden</button>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="market-page">
+    <div class="page-header">
+      <h1 class="page-greeting" id="pageGreeting">
+        Admin-Bereich
+      </h1>
+    </div>
+
+    <!-- Loading State -->
+    <div id="loadingState" class="market-grid" style="display: none;">
+      <div class="market-grid-item">
+        <div class="card h-100">
+          <div class="card-body">
+            <div class="skeleton-box mb-2" style="height: 24px; width: 70%;"></div>
+            <div class="skeleton-box mb-3" style="height: 16px; width: 40%;"></div>
+            <div class="skeleton-box" style="height: 32px; width: 50%;"></div>
+          </div>
+        </div>
+      </div>
+      <div class="market-grid-item">
+        <div class="card h-100">
+          <div class="card-body">
+            <div class="skeleton-box mb-2" style="height: 24px; width: 70%;"></div>
+            <div class="skeleton-box mb-3" style="height: 16px; width: 40%;"></div>
+            <div class="skeleton-box" style="height: 32px; width: 50%;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Error State -->
+    <div id="errorState" class="alert alert-danger d-flex align-items-center justify-content-between" style="display: none;">
+      <div>
+        <strong>⚠️ Fehler:</strong> <span id="errorMessage"></span>
+      </div>
+      <button class="btn btn-outline-danger btn-sm" id="retryBtn">
+        Erneut versuchen
+      </button>
+    </div>
+
+    <!-- Admin Panel -->
+    <div id="adminPanel" class="admin-panel">
+      <div class="admin-section">
+        <h2>Benutzerverwaltung</h2>
+        <div class="card">
+          <div class="card-body">
+            <h3>Benutzer mit Kontosalden</h3>
+            <div id="usersTable" style="overflow-x: auto;">
+              <!-- User table will be inserted here -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Access Denied State -->
+    <div id="accessDeniedState" class="empty-state" style="display: none;">
+      <div class="empty-icon">🚫</div>
+      <h3>Zugriff verweigert</h3>
+      <p class="text-muted">Sie haben keine Berechtigung, auf den Admin-Bereich zuzugreifen.</p>
+      <a href="market.html" class="btn">Zurück zum Markt</a>
+    </div>
+  </div>
+
+  <script src="assets/js/utils.js"></script>
+  <script src="assets/js/navigation.js"></script>
+  <script src="assets/js/admin.js"></script>
+</body>
+</html>

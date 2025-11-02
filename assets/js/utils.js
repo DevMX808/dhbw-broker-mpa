@@ -52,20 +52,30 @@ class TokenManager {
 
   static getUserInfo() {
     const token = this.getToken();
-    if (!token) return null;
+    if (!token) {
+      console.log('🔍 TokenManager.getUserInfo: No token found');
+      return null;
+    }
     
     const payload = this.parseJWT(token);
-    if (!payload) return null;
+    if (!payload) {
+      console.log('🔍 TokenManager.getUserInfo: Failed to parse JWT payload');
+      return null;
+    }
     
-    console.log('JWT Payload:', payload);
+    console.log('🔍 TokenManager.getUserInfo - Raw JWT Payload:', payload);
     
-    return {
+    const userInfo = {
       id: payload.sub,
       email: payload.email,
       firstName: payload.given_name || payload.firstName || '',
       lastName: payload.family_name || payload.lastName || '',
       roles: payload.roles || []
     };
+    
+    console.log('🔍 TokenManager.getUserInfo - Processed user info:', userInfo);
+    
+    return userInfo;
   }
 }
 
