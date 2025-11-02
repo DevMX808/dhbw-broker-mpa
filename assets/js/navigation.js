@@ -49,7 +49,7 @@ class Navigation {
 
   logout() {
     if (confirm('Sind Sie sicher, dass Sie sich abmelden möchten?')) {
-      TokenManager.clearToken();
+      TokenManager.removeToken();
       window.location.href = 'account.html';
     }
   }
