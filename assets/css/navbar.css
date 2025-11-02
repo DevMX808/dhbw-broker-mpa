@@ -109,6 +109,9 @@
   height: 2rem;
   cursor: pointer;
   transition: all 0.3s ease;
+  z-index: 1001;
+  position: relative;
+  pointer-events: auto;
 }
 
 .burger-line {
