@@ -282,6 +282,10 @@
     font-size: 1.5rem;
   }
   
+  .market-card {
+    padding: 1rem 0.75rem;
+  }
+  
   .nav-content {
     padding: 0 1rem;
     flex-direction: column;
