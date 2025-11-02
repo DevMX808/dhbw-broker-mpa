@@ -19,17 +19,16 @@
     </div>
   </div>
 
- <script src="assets/js/utils.js"></script>
-<script src="assets/js/navigation.js"></script>
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    if (TokenManager.isAuthenticated()) {
-      Navigation.redirectToMarket();
-    } else {
-      Navigation.redirectToLogin();
-    }
-  });
-</script>
-
+  <script src="assets/js/utils.js"></script>
+  <script>
+    // Check authentication and redirect accordingly
+    document.addEventListener('DOMContentLoaded', () => {
+      if (TokenManager.isAuthenticated()) {
+        Navigation.redirectToMarket();
+      } else {
+        Navigation.redirectToLogin();
+      }
+    });
+  </script>
 </body>
 </html>

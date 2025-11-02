@@ -260,8 +260,32 @@ class LoadingManager {
   }
 }
 
+class Navigation {
+  static redirectTo(path) {
+    window.location.href = path;
+  }
+
+  static redirectToLogin() {
+    this.redirectTo('/account.html');
+  }
+
+  static redirectToMarket() {
+    this.redirectTo('/market.html');
+  }
+
+  static checkAuthentication() {
+    if (!TokenManager.isAuthenticated()) {
+      this.redirectToLogin();
+      return false;
+    }
+    return true;
+  }
+}
+
+
 window.TokenManager = TokenManager;
 window.HttpClient = HttpClient;
 window.FormValidator = FormValidator;
 window.LoadingManager = LoadingManager;
+window.Navigation = Navigation;
 window.API_CONFIG = API_CONFIG;

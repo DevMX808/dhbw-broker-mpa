@@ -12,24 +12,12 @@ class AuthPage {
   }
 
   init() {
-    // Debug logging
-    console.log('AuthPage init called');
-    console.log('TokenManager:', typeof TokenManager);
-    console.log('TokenManager.isAuthenticated:', typeof TokenManager.isAuthenticated);
-    
     // Check if user is already authenticated
-    const isAuth = TokenManager.isAuthenticated();
-    console.log('Is authenticated:', isAuth);
-    
-    if (isAuth) {
-      console.log('User is authenticated, redirecting to market...');
-      if (typeof window.Navigation !== 'undefined' && window.Navigation.redirectToMarket) {
-        window.Navigation.redirectToMarket();
-      }
+    if (TokenManager.isAuthenticated()) {
+      Navigation.redirectToMarket();
       return;
     }
 
-    console.log('User not authenticated, binding events...');
     this.bindEvents();
   }
 
@@ -156,9 +144,7 @@ class AuthPage {
         
         // Small delay for better UX
         setTimeout(() => {
-          if (typeof window.Navigation !== 'undefined' && window.Navigation.redirectToMarket) {
-            window.Navigation.redirectToMarket();
-          }
+          Navigation.redirectToMarket();
         }, 500);
       } else {
         throw new Error('Keine Zugangsdaten in der Antwort erhalten');
@@ -206,9 +192,7 @@ class AuthPage {
         
         // Small delay for better UX
         setTimeout(() => {
-          if (typeof window.Navigation !== 'undefined' && window.Navigation.redirectToMarket) {
-            window.Navigation.redirectToMarket();
-          }
+          Navigation.redirectToMarket();
         }, 500);
       } else {
         throw new Error('Keine Zugangsdaten in der Antwort erhalten');
