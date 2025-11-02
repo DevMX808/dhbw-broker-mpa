@@ -130,24 +130,24 @@ class AdminPage {
 
     if (!this.users || this.users.length === 0) {
       usersTable.innerHTML = `
-        <div class="empty-state">
-          <div class="empty-icon">👥</div>
-          <h3>Keine Benutzer gefunden</h3>
-          <p>Es wurden keine Benutzer in der Datenbank gefunden.</p>
+        <div class="no-users">
+          Keine Benutzer gefunden
         </div>
       `;
       return;
     }
 
     const tableHTML = `
-      <table class="admin-table">
+      <table class="users-table">
         <thead>
           <tr>
-            <th>Vorname</th>
-            <th>Nachname</th>
-            <th>E-Mail</th>
-            <th>Status</th>
-            <th>Guthaben</th>
+            <th>VORNAME</th>
+            <th>NACHNAME</th>
+            <th>E-MAIL</th>
+            <th>ROLLE</th>
+            <th>STATUS</th>
+            <th>GUTHABEN</th>
+            <th>AKTIONEN</th>
           </tr>
         </thead>
         <tbody>
@@ -156,15 +156,18 @@ class AdminPage {
               <td>${this.escapeHtml(user.firstName || 'N/A')}</td>
               <td>${this.escapeHtml(user.lastName || 'N/A')}</td>
               <td>${this.escapeHtml(user.email || 'N/A')}</td>
+              <td>${this.escapeHtml(user.role || 'USER')}</td>
               <td>
                 <span class="${this.getStatusClass(user.status)}">
                   ${this.escapeHtml(this.getStatusText(user.status))}
                 </span>
               </td>
-              <td class="balance-cell">
-                <span class="balance ${(user.balance || 0) >= 0 ? 'positive' : 'negative'}">
-                  ${this.formatBalance(user.balance)}
-                </span>
+              <td class="balance">${this.formatBalance(user.balance)}</td>
+              <td>
+                <button class="action-btn ${user.status === 'ACTIVATED' ? 'block-btn' : 'activate-btn'}" 
+                        onclick="window.adminPage.toggleUserStatus('${user.userId}', '${user.status}')">
+                  ${user.status === 'ACTIVATED' ? 'Blockieren' : 'Aktivieren'}
+                </button>
               </td>
             </tr>
           `).join('')}
@@ -203,7 +206,27 @@ class AdminPage {
     if (balance == null) {
       return '-';
     }
-    return '$' + Number(balance).toFixed(2);
+    return Number(balance).toFixed(2) + ' USD';
+  }
+
+  async toggleUserStatus(userId, currentStatus) {
+    if (!confirm('Sind Sie sicher, dass Sie den Benutzerstatus ändern möchten?')) {
+      return;
+    }
+
+    try {
+      const newStatus = currentStatus === 'ACTIVATED' ? 'DEACTIVATED' : 'ACTIVATED';
+      const action = newStatus === 'ACTIVATED' ? 'activate' : 'deactivate';
+      
+      await HttpClient.post(`/api/admin/users/${userId}/${action}`, {});
+      
+      // Reload users table
+      await this.loadUsers();
+      
+    } catch (error) {
+      console.error('Failed to toggle user status:', error);
+      alert('Fehler beim Ändern des Benutzerstatus: ' + error.message);
+    }
   }
 }
 
@@ -214,6 +237,6 @@ document.addEventListener('DOMContentLoaded', () => {
     return;
   }
 
-  // Initialize admin page
-  new AdminPage();
+  // Initialize admin page and store global reference
+  window.adminPage = new AdminPage();
 });

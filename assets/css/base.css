@@ -223,124 +223,143 @@ body {
   }
 }
 
-/* Admin Panel Styles */
-.admin-panel {
-  max-width: 1200px;
-  margin: 0 auto;
+/* Admin Panel Styles - exakt wie SPA */
+.admin-users-container {
   padding: 20px;
+  color: white;
 }
 
-.admin-section {
-  margin-bottom: 30px;
-}
-
-.admin-section h2 {
-  color: #fff;
+.admin-users-container h2 {
   margin-bottom: 20px;
+  color: white;
   font-size: 1.5rem;
   font-weight: 600;
 }
 
-.admin-table {
+.admin-users-container .loading {
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+.admin-users-container .error {
+  color: #ff6b6b;
+  padding: 20px;
+  background-color: rgba(255, 107, 107, 0.1);
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.admin-users-container .error .retry-btn {
+  margin-left: 10px;
+  padding: 5px 10px;
+  background-color: #ff6b6b;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.admin-users-container .error .retry-btn:hover {
+  background-color: #ff5252;
+}
+
+.users-table-container {
+  overflow-x: auto;
+}
+
+.users-table {
   width: 100%;
   border-collapse: collapse;
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  color: white;
+  background: transparent;
 }
 
-.admin-table th,
-.admin-table td {
-  padding: 12px 15px;
+.users-table th {
   text-align: left;
-  border-bottom: 1px solid #e0e0e0;
-}
-
-.admin-table th {
-  background-color: #f8f9fa;
+  padding: 12px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
   font-weight: 600;
-  color: #495057;
   font-size: 0.9rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
-.admin-table tbody tr:hover {
-  background-color: #f8f9fa;
-}
-
-.admin-table tbody tr:last-child td {
-  border-bottom: none;
-}
-
-.role-badges {
-  display: flex;
-  gap: 4px;
-  flex-wrap: wrap;
-}
-
-.role-badge {
-  display: inline-block;
-  padding: 2px 8px;
-  border-radius: 12px;
-  font-size: 0.75rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.role-badge.role-admin {
-  background-color: #dc3545;
+.users-table td {
+  padding: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   color: white;
 }
 
-.role-badge.role-user {
-  background-color: #6c757d;
-  color: white;
-}
-
-.balance-cell {
+.users-table td.balance {
+  font-family: monospace;
   text-align: right;
 }
 
-.balance {
-  font-weight: 600;
-  font-family: 'Courier New', monospace;
-}
-
-.balance.positive {
-  color: #28a745;
-}
-
-.balance.negative {
-  color: #dc3545;
+.users-table tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.05);
 }
 
 .status-active {
-  color: #28a745;
-  font-weight: 600;
+  color: #4caf50;
+  font-weight: 500;
 }
 
 .status-inactive {
-  color: #dc3545;
-  font-weight: 600;
+  color: #ff9800;
+  font-weight: 500;
+}
+
+.no-users {
+  text-align: center;
+  padding: 40px;
+  color: rgba(255, 255, 255, 0.7);
+  font-style: italic;
+}
+
+.action-btn {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.activate-btn {
+  background-color: #4caf50;
+  color: white;
+}
+
+.activate-btn:hover {
+  background-color: #45a049;
+}
+
+.block-btn {
+  background-color: #f44336;
+  color: white;
+}
+
+.block-btn:hover {
+  background-color: #da190b;
 }
 
 /* Responsive Admin Table */
 @media (max-width: 768px) {
-  .admin-table {
+  .users-table {
     font-size: 0.8rem;
   }
   
-  .admin-table th,
-  .admin-table td {
-    padding: 8px 10px;
+  .users-table th,
+  .users-table td {
+    padding: 8px 6px;
   }
   
-  .admin-table {
-    display: block;
-    overflow-x: auto;
-    white-space: nowrap;
+  .action-btn {
+    padding: 4px 8px;
+    font-size: 0.7rem;
   }
 }
