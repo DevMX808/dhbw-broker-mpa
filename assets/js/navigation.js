@@ -139,46 +139,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
   });
-  
-  // Fallback: Ensure mobile menu works even if navigation fails
-  const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-  const mobileMenu = document.getElementById('mobileMenu');
-  
-  console.log('Mobile menu elements:', { 
-    toggle: mobileMenuToggle, 
-    menu: mobileMenu,
-    toggleExists: !!mobileMenuToggle,
-    menuExists: !!mobileMenu
-  }); // Debug
-  
-  if (mobileMenuToggle && mobileMenu && !mobileMenuToggle.hasAttribute('data-mobile-initialized')) {
-    mobileMenuToggle.setAttribute('data-mobile-initialized', 'true');
-    
-    // Try multiple event types to ensure it works
-    ['click', 'touchstart'].forEach(eventType => {
-      mobileMenuToggle.addEventListener(eventType, (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        console.log(`Mobile menu toggle ${eventType}!`); // Debug
-        
-        // Check if menu is currently open by checking both inline style and computed style
-        const currentDisplay = window.getComputedStyle(mobileMenu).display;
-        const isOpen = currentDisplay === 'flex';
-        
-        console.log('Current display:', currentDisplay, 'Is open:', isOpen); // Debug
-        
-        if (isOpen) {
-          mobileMenuToggle.classList.remove('active');
-          mobileMenu.style.display = 'none';
-          console.log('Closing menu'); // Debug
-        } else {
-          mobileMenuToggle.classList.add('active');
-          mobileMenu.style.display = 'flex';
-          console.log('Opening menu'); // Debug
-        }
-      });
-    });
-  }
 });
 
 if (typeof module !== 'undefined' && module.exports) {
