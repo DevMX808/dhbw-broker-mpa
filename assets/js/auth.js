@@ -12,14 +12,24 @@ class AuthPage {
   }
 
   init() {
+    // Debug logging
+    console.log('AuthPage init called');
+    console.log('TokenManager:', typeof TokenManager);
+    console.log('TokenManager.isAuthenticated:', typeof TokenManager.isAuthenticated);
+    
     // Check if user is already authenticated
-    if (TokenManager.isAuthenticated()) {
+    const isAuth = TokenManager.isAuthenticated();
+    console.log('Is authenticated:', isAuth);
+    
+    if (isAuth) {
+      console.log('User is authenticated, redirecting to market...');
       if (typeof window.Navigation !== 'undefined' && window.Navigation.redirectToMarket) {
         window.Navigation.redirectToMarket();
       }
       return;
     }
 
+    console.log('User not authenticated, binding events...');
     this.bindEvents();
   }
 
