@@ -5,6 +5,8 @@ class Navigation {
   }
 
   initializeNavigation() {
+    console.log('Initializing navigation...'); // Debug log
+    
     // Mobile menu toggle
     const mobileMenuToggle = document.getElementById('mobileMenuToggle');
     const mobileMenu = document.getElementById('mobileMenu');
@@ -17,10 +19,16 @@ class Navigation {
 
     // Logout buttons
     const logoutBtns = document.querySelectorAll('#logoutBtn, #mobileLogoutBtn');
+    console.log('Found logout buttons:', logoutBtns.length); // Debug log
+    
     logoutBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        this.logout();
-      });
+      if (btn) {
+        console.log('Adding event listener to:', btn.id); // Debug log
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          this.logout();
+        });
+      }
     });
 
     // Update user info
@@ -110,11 +118,29 @@ class Navigation {
   }
 }
 
+// Initialize navigation globally
+let navigationInstance = null;
+
 document.addEventListener('DOMContentLoaded', () => {
-  // Only initialize navigation if we're not on the auth page
-  if (!document.body.classList.contains('auth-page')) {
-    new Navigation();
+  // Only initialize navigation if we're not on the auth page and not already initialized
+  if (!document.body.classList.contains('auth-page') && !navigationInstance) {
+    navigationInstance = new Navigation();
   }
+  
+  // Fallback: Ensure logout buttons work even if navigation fails
+  const logoutBtns = document.querySelectorAll('#logoutBtn, #mobileLogoutBtn');
+  logoutBtns.forEach(btn => {
+    if (btn && !btn.hasAttribute('data-logout-initialized')) {
+      btn.setAttribute('data-logout-initialized', 'true');
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (confirm('Sind Sie sicher, dass Sie sich abmelden möchten?')) {
+          TokenManager.clearToken();
+          window.location.href = 'account.html';
+        }
+      });
+    }
+  });
 });
 
 if (typeof module !== 'undefined' && module.exports) {
