@@ -1,114 +1,162 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="utf-8">
-  <title>Market - Ledgero Demo Broker</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/base.css">
-  <link rel="stylesheet" href="assets/css/market.css">
-  <link rel="stylesheet" href="assets/css/navbar.css">
-  <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+    <meta charset="utf-8">
+    <title>Market - Ledgero Demo Broker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="data:,">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/market.css">
+    <link rel="stylesheet" href="assets/css/navbar.css">
 </head>
 <body>
-  <!-- Navigation Header -->
-  <nav class="navbar">
+<nav class="navbar">
     <div class="navbar-logo">
-      <span class="logo-text">LEDGERO</span>
+        <span class="logo-text">LEDGERO</span>
     </div>
 
     <div class="burger" id="mobileMenuToggle">
-      <span class="burger-line"></span>
-      <span class="burger-line"></span>
-      <span class="burger-line"></span>
+        <span class="burger-line"></span>
+        <span class="burger-line"></span>
+        <span class="burger-line"></span>
     </div>
 
     <div class="navbar-center">
-      <a href="market.html" class="nav-link active-link">Markt</a>
-      <a href="portfolio.html" class="nav-link">Portfolio</a>
-      <a href="settings.html" class="nav-link">Einstellungen</a>
-      <a href="admin.html" class="nav-link">Admin</a>
+        <a href="market.html" class="nav-link active-link">Markt</a>
+        <a href="portfolio.html" class="nav-link">Portfolio</a>
+        <a href="settings.html" class="nav-link">Einstellungen</a>
+        <a href="admin.html" class="nav-link">Admin</a>
     </div>
 
     <div class="navbar-right">
-      <button class="logout-button" id="logoutBtn">Abmelden</button>
+        <button class="logout-button" id="logoutBtn">Abmelden</button>
     </div>
 
     <div class="mobile-menu" id="mobileMenu" style="display: none;">
-      <a href="market.html" class="nav-link">Markt</a>
-      <a href="portfolio.html" class="nav-link">Portfolio</a>
-      <a href="settings.html" class="nav-link">Einstellungen</a>
-      <a href="admin.html" class="nav-link">Admin</a>
-      <button class="logout-button" id="mobileLogoutBtn">Abmelden</button>
+        <a href="market.html" class="nav-link">Markt</a>
+        <a href="portfolio.html" class="nav-link">Portfolio</a>
+        <a href="settings.html" class="nav-link">Einstellungen</a>
+        <a href="admin.html" class="nav-link">Admin</a>
+        <button class="logout-button" id="mobileLogoutBtn">Abmelden</button>
     </div>
-  </nav>
+</nav>
 
-  <!-- Main Content -->
-  <div class="market-page">
+<div class="market-page">
     <div class="page-header">
-      <h1 class="page-greeting" id="pageGreeting">
-        <span>Hallo</span>, Trader.
-      </h1>
+        <h1 class="page-greeting" id="pageGreeting">
+            <span>Hallo</span>, Trader.
+        </h1>
     </div>
 
-    <!-- Loading State -->
+    <div class="market-hint">
+        <span class="info-icon">i</span>
+        Diese Alexa-Demo repliziert die Sprachausgabe. Sowohl die echte Alexa-Skill-Integration als auch diese Demo nutzen den BFF-Endpunkt, der via GraphQL auf die Datenbank zugreift. Der echte Alexa Skill ist über die Amazon Developer Console erreichbar und kann dort getestet werden.
+    </div>
+
+    <div class="alexa-panel">
+        <div class="alexa-left">
+            <div class="alexa-title">Alexa Demo</div>
+            <p class="alexa-text">
+                Löst den BFF-Alexa-Endpunkt aus und liest die aktuellen Marktpreise oder ein einzelnes Asset.
+            </p>
+
+            <div class="alexa-grid">
+                <button class="btn btn-secondary alexa-full-btn" id="alexaAllBtn">
+                    Alle Marktpreise abrufen
+                </button>
+
+                <div class="alexa-row">
+                    <input
+                            class="form-control"
+                            type="text"
+                            placeholder="z. B. Gold, BTC, ETH"
+                            id="alexaAssetInput" />
+                    <button class="btn btn-secondary" id="alexaSingleBtn">
+                        Einzelnes Asset
+                    </button>
+                </div>
+
+                <div class="alexa-row alexa-row-split">
+                    <button class="btn btn-secondary" type="button" id="alexaRepeatBtn" disabled>
+                        Noch einmal abspielen
+                    </button>
+                    <button class="btn btn-secondary" type="button" id="alexaStopBtn" disabled>
+                        Sprachausgabe stoppen
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="alexa-right">
+            <div class="alexa-output-title">Alexa Antwort</div>
+            <div id="alexaOutputContainer">
+                <div class="alexa-placeholder" id="alexaPlaceholder">Noch keine Ausgabe.</div>
+                <div class="alexa-loading" id="alexaLoading" style="display: none;">Wird abgefragt...</div>
+                <div class="alexa-error" id="alexaError" style="display: none;"></div>
+                <div class="alexa-output" id="alexaOutput" style="display: none;"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="market-hint market-hint-assets">
+        <span class="info-icon">i</span>
+        Durch Auswahl eines Assets können Sie den Kursverlauf einsehen und einen Kauf zum aktuellen Marktpreis tätigen. Die Kurse werden minütlich aktualisiert. Bei geschlossenen Märkten werden die letzten verfügbaren Kurse fortgeschrieben.
+    </div>
+
     <div id="loadingState" class="market-grid" style="display: none;">
-      <div class="market-grid-item">
-        <div class="card h-100">
-          <div class="card-body">
-            <div class="skeleton-box mb-2" style="height: 24px; width: 70%;"></div>
-            <div class="skeleton-box mb-3" style="height: 16px; width: 40%;"></div>
-            <div class="skeleton-box" style="height: 32px; width: 50%;"></div>
-          </div>
+        <div class="market-grid-item">
+            <div class="card h-100">
+                <div class="card-body">
+                    <div class="skeleton-box mb-2" style="height: 24px; width: 70%;"></div>
+                    <div class="skeleton-box mb-3" style="height: 16px; width: 40%;"></div>
+                    <div class="skeleton-box" style="height: 32px; width: 50%;"></div>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="market-grid-item">
-        <div class="card h-100">
-          <div class="card-body">
-            <div class="skeleton-box mb-2" style="height: 24px; width: 70%;"></div>
-            <div class="skeleton-box mb-3" style="height: 16px; width: 40%;"></div>
-            <div class="skeleton-box" style="height: 32px; width: 50%;"></div>
-          </div>
+        <div class="market-grid-item">
+            <div class="card h-100">
+                <div class="card-body">
+                    <div class="skeleton-box mb-2" style="height: 24px; width: 70%;"></div>
+                    <div class="skeleton-box mb-3" style="height: 16px; width: 40%;"></div>
+                    <div class="skeleton-box" style="height: 32px; width: 50%;"></div>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="market-grid-item">
-        <div class="card h-100">
-          <div class="card-body">
-            <div class="skeleton-box mb-2" style="height: 24px; width: 70%;"></div>
-            <div class="skeleton-box mb-3" style="height: 16px; width: 40%;"></div>
-            <div class="skeleton-box" style="height: 32px; width: 50%;"></div>
-          </div>
+        <div class="market-grid-item">
+            <div class="card h-100">
+                <div class="card-body">
+                    <div class="skeleton-box mb-2" style="height: 24px; width: 70%;"></div>
+                    <div class="skeleton-box mb-3" style="height: 16px; width: 40%;"></div>
+                    <div class="skeleton-box" style="height: 32px; width: 50%;"></div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
 
-    <!-- Error State -->
     <div id="errorState" class="alert alert-danger d-flex align-items-center justify-content-between" style="display: none;">
-      <div>
-        <strong>⚠️ Fehler:</strong> <span id="errorMessage"></span>
-      </div>
-      <button class="btn btn-outline-danger btn-sm" id="retryBtn">
-        Erneut versuchen
-      </button>
+        <div>
+            <strong>⚠️ Fehler:</strong> <span id="errorMessage"></span>
+        </div>
+        <button class="btn btn-outline-danger btn-sm" id="retryBtn">
+            Erneut versuchen
+        </button>
     </div>
 
-    <!-- Empty State -->
     <div id="emptyState" class="empty-state" style="display: none;">
-      <div class="empty-icon">📊</div>
-      <h3>Keine Symbole verfügbar</h3>
-      <p class="text-muted">Derzeit sind keine handelbaren Symbole verfügbar.</p>
+        <div class="empty-icon">📊</div>
+        <h3>Keine Symbole verfügbar</h3>
+        <p class="text-muted">Derzeit sind keine handelbaren Symbole verfügbar.</p>
     </div>
 
-    <!-- Market Grid -->
     <div id="marketGrid" class="market-grid">
-      <!-- Market cards will be inserted here -->
     </div>
-  </div>
+</div>
 
-  <script src="assets/js/utils.js"></script>
-  <script src="assets/js/navigation.js"></script>
-  <script src="assets/js/market.js"></script>
+<script src="assets/js/utils.js"></script>
+<script src="assets/js/navigation.js"></script>
+<script src="assets/js/market.js"></script>
 </body>
 </html>

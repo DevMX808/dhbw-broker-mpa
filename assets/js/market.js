@@ -441,7 +441,6 @@ class MarketPage {
             return '—';
         }
 
-        // Format with appropriate decimal places
         if (numPrice >= 1000) {
             return numPrice.toLocaleString('de-DE', {
                 minimumFractionDigits: 2,
