@@ -1,106 +1,138 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="utf-8">
-  <title>Admin - Ledgero Demo Broker</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/base.css">
-  <link rel="stylesheet" href="assets/css/market.css">
-  <link rel="stylesheet" href="assets/css/navbar.css">
-  <link rel="stylesheet" href="assets/css/admin.css">
-  <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+    <meta charset="utf-8">
+    <title>Admin - Ledgero Demo Broker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="data:,">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/navbar.css">
+    <link rel="stylesheet" href="assets/css/admin.css">
 </head>
 <body>
-  <!-- Navigation Header -->
-  <nav class="navbar">
+<nav class="navbar">
     <div class="navbar-logo">
-      <span class="logo-text">LEDGERO</span>
+        <span class="logo-text">LEDGERO</span>
     </div>
 
     <div class="burger" id="mobileMenuToggle">
-      <span class="burger-line"></span>
-      <span class="burger-line"></span>
-      <span class="burger-line"></span>
+        <span class="burger-line"></span>
+        <span class="burger-line"></span>
+        <span class="burger-line"></span>
     </div>
 
     <div class="navbar-center">
-      <a href="market.html" class="nav-link">Markt</a>
-      <a href="portfolio.html" class="nav-link">Portfolio</a>
-      <a href="settings.html" class="nav-link">Einstellungen</a>
-      <a href="admin.html" class="nav-link active-link">Admin</a>
+        <a href="market.html" class="nav-link">Markt</a>
+        <a href="portfolio.html" class="nav-link">Portfolio</a>
+        <a href="settings.html" class="nav-link">Einstellungen</a>
+        <a href="admin.html" class="nav-link active-link">Admin</a>
     </div>
 
     <div class="navbar-right">
-      <button class="logout-button" id="logoutBtn">Abmelden</button>
+        <button class="logout-button" id="logoutBtn">Abmelden</button>
     </div>
 
     <div class="mobile-menu" id="mobileMenu" style="display: none;">
-      <a href="market.html" class="nav-link">Markt</a>
-      <a href="portfolio.html" class="nav-link">Portfolio</a>
-      <a href="settings.html" class="nav-link">Einstellungen</a>
-      <a href="admin.html" class="nav-link">Admin</a>
-      <button class="logout-button" id="mobileLogoutBtn">Abmelden</button>
+        <a href="market.html" class="nav-link">Markt</a>
+        <a href="portfolio.html" class="nav-link">Portfolio</a>
+        <a href="settings.html" class="nav-link">Einstellungen</a>
+        <a href="admin.html" class="nav-link">Admin</a>
+        <button class="logout-button" id="mobileLogoutBtn">Abmelden</button>
     </div>
-  </nav>
+</nav>
 
-  <!-- Main Content -->
-  <div class="market-page">
-    
+<div class="admin-page">
+    <h1 class="portfolio-title">Benutzerverwaltung</h1>
 
-    <!-- Loading State -->
-    <div id="loadingState" class="market-grid" style="display: none;">
-      <div class="market-grid-item">
-        <div class="card h-100">
-          <div class="card-body">
-            <div class="skeleton-box mb-2" style="height: 24px; width: 70%;"></div>
-            <div class="skeleton-box mb-3" style="height: 16px; width: 40%;"></div>
-            <div class="skeleton-box" style="height: 32px; width: 50%;"></div>
-          </div>
+    <div class="admin-hint">
+        <span class="info-icon">i</span>
+        Übersicht über alle Benutzer. Hier kannst du Status ändern (blockieren/aktivieren) und Guthaben einsehen. Änderungen wirken sofort.
+    </div>
+
+    <div id="loadingBlock" class="loading-block" style="display: none;">
+        <div class="spinner"></div>
+        <p>Benutzer werden geladen…</p>
+    </div>
+
+    <div id="errorAlert" class="alert alert-danger" style="display: none;">
+        <span id="errorMessageText"></span>
+        <button type="button" class="btn btn-secondary" id="retryBtn">Erneut versuchen</button>
+    </div>
+
+    <div id="successMessage" class="trade-message trade-message--success" style="display: none;">
+        <span class="message-icon">✓</span>
+        <span class="message-text" id="successText"></span>
+    </div>
+
+    <div id="errorMessageBox" class="trade-message trade-message--error" style="display: none;">
+        <span class="message-icon">✕</span>
+        <span class="message-text" id="errorText"></span>
+    </div>
+
+    <div id="adminContent" style="display: none;">
+        <div class="portfolio-table-wrapper">
+            <div class="portfolio-card users-card">
+                <h2 class="table-title">Alle Benutzer</h2>
+                <div class="table-scroller">
+                    <table class="portfolio-table users-table" id="usersTable">
+                        <thead>
+                        <tr class="table-header">
+                            <th class="th-left">VORNAME</th>
+                            <th class="th-left">NACHNAME</th>
+                            <th class="th-left">E-MAIL</th>
+                            <th>ROLLE</th>
+                            <th>STATUS</th>
+                            <th class="th-num">GUTHABEN</th>
+                            <th class="th-actions">AKTIONEN</th>
+                        </tr>
+                        </thead>
+                        <tbody id="usersTableBody">
+                        </tbody>
+                    </table>
+                </div>
+                <div id="emptyText" class="empty-text" style="display: none;">
+                    Keine Benutzer gefunden.
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="market-grid-item">
-        <div class="card h-100">
-          <div class="card-body">
-            <div class="skeleton-box mb-2" style="height: 24px; width: 70%;"></div>
-            <div class="skeleton-box mb-3" style="height: 16px; width: 40%;"></div>
-            <div class="skeleton-box" style="height: 32px; width: 50%;"></div>
-          </div>
-        </div>
-      </div>
     </div>
 
-    <!-- Error State -->
-    <div id="errorState" class="alert alert-danger d-flex align-items-center justify-content-between" style="display: none;">
-      <div>
-        <strong>⚠️ Fehler:</strong> <span id="errorMessage"></span>
-      </div>
-      <button class="btn btn-outline-danger btn-sm" id="retryBtn">
-        Erneut versuchen
-      </button>
-    </div>
-
-    <!-- Admin Panel -->
-    <div id="adminPanel" class="admin-users-container">
-      <h2>Benutzerverwaltung</h2>
-      <div id="usersTable" class="users-table-container">
-        <!-- User table will be inserted here -->
-      </div>
-    </div>
-
-    <!-- Access Denied State -->
     <div id="accessDeniedState" class="empty-state" style="display: none;">
-      <div class="empty-icon">🚫</div>
-      <h3>Zugriff verweigert</h3>
-      <p class="text-muted">Sie haben keine Berechtigung, auf den Admin-Bereich zuzugreifen.</p>
-      <a href="market.html" class="btn">Zurück zum Markt</a>
+        <div class="empty-icon">🚫</div>
+        <h3>Zugriff verweigert</h3>
+        <p class="text-muted">Sie haben keine Berechtigung, auf den Admin-Bereich zuzugreifen.</p>
+        <a href="market.html" class="btn">Zurück zum Markt</a>
     </div>
-  </div>
+</div>
 
-  <script src="assets/js/utils.js"></script>
-  <script src="assets/js/navigation.js"></script>
-  <script src="assets/js/admin.js"></script>
+<div id="confirmModal" class="modal-overlay" style="display: none;">
+    <div class="modal-content glass">
+        <div class="modal-header">
+            <h3 class="modal-title">Benutzer blockieren</h3>
+            <button class="modal-close" type="button" id="modalCloseBtn">×</button>
+        </div>
+        <div class="modal-body">
+            <p>
+                Soll der Benutzer
+                <strong id="modalUserName"></strong>
+                (<span id="modalUserEmail"></span>) wirklich blockiert werden?
+            </p>
+            <p class="warning-text">
+                Blockierte Benutzer können sich nicht mehr anmelden.
+            </p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" id="modalCancelBtn">Abbrechen</button>
+            <button type="button" class="btn btn-danger" id="modalConfirmBtn">Ja, blockieren</button>
+        </div>
+    </div>
+</div>
+
+<script src="assets/js/utils.js"></script>
+<script src="assets/js/navigation.js"></script>
+<script src="assets/js/admin.js"></script>
 </body>
 </html>
