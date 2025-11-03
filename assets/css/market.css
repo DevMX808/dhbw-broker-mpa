@@ -135,8 +135,13 @@
     color: #fff;
     border-radius: 0.5rem;
     padding: 0.45rem 0.6rem;
-    min-width: 160px;
-    flex: 1 1 auto;
+    min-width: 120px;
+    flex: 0 1 35%;
+}
+
+.alexa-row .btn {
+    flex: 0 1 65%;
+    white-space: nowrap;
 }
 
 .alexa-row .form-control:focus {

@@ -5,6 +5,7 @@ class Navigation {
     }
 
     initializeNavigation() {
+        // Mobile menu toggle
         const mobileMenuToggle = document.getElementById('mobileMenuToggle');
         const mobileMenu = document.getElementById('mobileMenu');
 
@@ -14,6 +15,7 @@ class Navigation {
             });
         }
 
+        // Logout buttons
         const logoutBtns = document.querySelectorAll('#logoutBtn, #mobileLogoutBtn');
         logoutBtns.forEach(btn => {
             btn.addEventListener('click', () => {
@@ -21,8 +23,10 @@ class Navigation {
             });
         });
 
+        // Update user info
         this.updateUserInfo();
 
+        // Check admin role
         this.checkAdminRole();
     }
 
@@ -53,6 +57,9 @@ class Navigation {
     updateUserInfo() {
         const user = TokenManager.getUserInfo();
         if (user) {
+            // No greeting in navbar anymore - it's been removed from HTML
+
+            // Update page greeting if present with real name
             const pageGreeting = document.getElementById('pageGreeting');
             if (pageGreeting) {
                 const fullName = `${user.firstName || ''} ${user.lastName || ''}`.trim();
@@ -60,6 +67,7 @@ class Navigation {
                 pageGreeting.innerHTML = `<span>Hallo</span>, ${displayName}.`;
             }
 
+            // Update user info in footer/details if present with real name
             const userInfo = document.getElementById('userInfo');
             if (userInfo) {
                 const fullName = `${user.firstName || ''} ${user.lastName || ''}`.trim();
@@ -80,6 +88,7 @@ class Navigation {
             if (user.roles.includes('ADMIN')) {
                 console.log('✅ User has ADMIN role, showing admin links');
 
+                // Show admin links
                 const adminLink = document.getElementById('adminLink');
                 const mobileAdminLink = document.getElementById('mobileAdminLink');
 
@@ -107,6 +116,7 @@ class Navigation {
         }
     }
 
+    // Static methods for page navigation
     static redirectTo(path) {
         window.location.href = path;
     }
@@ -119,9 +129,13 @@ class Navigation {
         this.redirectTo('market.html');
     }
 
+    static redirectToUnauthorized() {
+        this.redirectTo('401.html');
+    }
+
     static checkAuthentication() {
         if (!TokenManager.isAuthenticated()) {
-            this.redirectToLogin();
+            this.redirectToUnauthorized();
             return false;
         }
         return true;
@@ -129,9 +143,11 @@ class Navigation {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Only initialize navigation if we're not on the auth page
     if (!document.body.classList.contains('auth-page')) {
         new Navigation();
     }
 });
 
+// Make Navigation class globally available
 window.Navigation = Navigation;

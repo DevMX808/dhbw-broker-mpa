@@ -286,9 +286,12 @@ window.Navigation = {
     redirectToMarket() {
         this.redirectTo('market.html');
     },
+    redirectToUnauthorized() {
+        this.redirectTo('401.html');
+    },
     checkAuthentication() {
         if (!TokenManager.isAuthenticated()) {
-            this.redirectToLogin();
+            this.redirectToUnauthorized();
             return false;
         }
         return true;

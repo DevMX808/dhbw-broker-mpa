@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <title>404 - Seite nicht gefunden</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="data:,">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/error.css">
+</head>
+<body>
+  <div class="page page--center">
+    <div class="error-container">
+      <h1 class="error-code">404</h1>
+      <p class="error-message">Oops, etwas ist schiefgelaufen (Seite nicht gefunden).</p>
+      <button class="return-button" id="returnBtn">Zurück zur Startseite</button>
+    </div>
+  </div>
+
+  <script src="assets/js/utils.js"></script>
+  <script>
+    document.getElementById('returnBtn').addEventListener('click', () => {
+      if (TokenManager.isAuthenticated()) {
+        window.location.href = 'market.html';
+      } else {
+        window.location.href = 'account.html';
+      }
+    });
+  </script>
+</body>
+</html>
