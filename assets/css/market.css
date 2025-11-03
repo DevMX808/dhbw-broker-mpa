@@ -136,11 +136,11 @@
     border-radius: 0.5rem;
     padding: 0.45rem 0.6rem;
     min-width: 120px;
-    flex: 0 1 35%;
+    flex: 0 1 60%;
 }
 
 .alexa-row .btn {
-    flex: 0 1 65%;
+    flex: 0 1 40%;
     white-space: nowrap;
 }
 
