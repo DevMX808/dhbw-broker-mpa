@@ -275,3 +275,22 @@ window.HttpClient = HttpClient;
 window.FormValidator = FormValidator;
 window.LoadingManager = LoadingManager;
 window.API_CONFIG = API_CONFIG;
+
+window.Navigation = {
+    redirectTo(path) {
+        window.location.href = path;
+    },
+    redirectToLogin() {
+        this.redirectTo('account.html');
+    },
+    redirectToMarket() {
+        this.redirectTo('market.html');
+    },
+    checkAuthentication() {
+        if (!TokenManager.isAuthenticated()) {
+            this.redirectToLogin();
+            return false;
+        }
+        return true;
+    }
+};
