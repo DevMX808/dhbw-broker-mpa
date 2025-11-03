@@ -205,7 +205,6 @@ class MarketPage {
         try {
             this.showLoading();
 
-            // Load symbols first
             const symbols = await HttpClient.get(API_CONFIG.endpoints.symbols);
             console.log('Loaded symbols:', symbols);
 
@@ -216,10 +215,8 @@ class MarketPage {
                 return;
             }
 
-            // Render symbols immediately
             this.renderMarketGrid();
 
-            // Load prices for each symbol
             await this.loadPrices();
 
         } catch (error) {
@@ -229,7 +226,6 @@ class MarketPage {
     }
 
     async loadPrices() {
-        // Load prices for all symbols
         const pricePromises = this.symbols.map(symbol => this.loadPriceForSymbol(symbol.symbol));
         await Promise.allSettled(pricePromises);
     }
@@ -243,7 +239,6 @@ class MarketPage {
             this.loadingPrices.add(symbol);
             this.updateCardLoadingState(symbol, true);
 
-            // Load both price and trend data like in SPA
             const [priceData, trendData] = await Promise.allSettled([
                 HttpClient.get(`${API_CONFIG.endpoints.prices}/${symbol}`),
                 HttpClient.get(`/api/price/trend/${symbol}`)
@@ -252,7 +247,6 @@ class MarketPage {
             const price = priceData.status === 'fulfilled' ? priceData.value : null;
             const trend = trendData.status === 'fulfilled' ? trendData.value : null;
 
-            // Combine price and trend data
             const combinedData = price ? {
                 ...price,
                 priceChange: trend?.priceChange || null
@@ -370,7 +364,6 @@ class MarketPage {
             noPrice.style.display = 'none';
         } else {
             skeletonLoader.style.display = 'none';
-            // Show appropriate price state
             if (this.prices[symbol]) {
                 priceContent.style.display = 'block';
                 noPrice.style.display = 'none';
@@ -392,15 +385,13 @@ class MarketPage {
         const noPrice = cardElement.querySelector('.no-price');
 
         if (priceData && priceData.price !== null && priceData.price !== undefined) {
-            // Format price
+
             const formattedPrice = this.formatPrice(priceData.price);
             priceAmount.textContent = formattedPrice;
 
-            // Show price content
             priceContent.style.display = 'block';
             noPrice.style.display = 'none';
 
-            // Update change indicator
             if (priceData.priceChange) {
                 changeIndicator.style.display = 'block';
                 changeIndicator.className = 'change-indicator';
@@ -424,7 +415,6 @@ class MarketPage {
                 changeIndicator.style.display = 'none';
             }
         } else {
-            // No price data available
             priceContent.style.display = 'none';
             noPrice.style.display = 'block';
             changeIndicator.style.display = 'none';
