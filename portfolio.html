@@ -1,61 +1,61 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="utf-8">
-  <title>Portfolio - Ledgero Demo Broker</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/base.css">
-  <link rel="stylesheet" href="assets/css/navbar.css">
-  <link rel="stylesheet" href="assets/css/portfolio.css">
-  <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+    <meta charset="utf-8">
+    <title>Portfolio - Ledgero Demo Broker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="data:,">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/navbar.css">
+    <link rel="stylesheet" href="assets/css/portfolio.css">
 </head>
 <body>
-  <!-- Navigation Header -->
-  <nav class="navbar">
+<!-- Navigation Header -->
+<nav class="navbar">
     <div class="navbar-logo">
-      <span class="logo-text">LEDGERO</span>
+        <span class="logo-text">LEDGERO</span>
     </div>
 
     <div class="burger" id="mobileMenuToggle">
-      <span class="burger-line"></span>
-      <span class="burger-line"></span>
-      <span class="burger-line"></span>
+        <span class="burger-line"></span>
+        <span class="burger-line"></span>
+        <span class="burger-line"></span>
     </div>
 
     <div class="navbar-center">
-      <a href="market.html" class="nav-link">Markt</a>
-      <a href="portfolio.html" class="nav-link active-link">Portfolio</a>
-      <a href="settings.html" class="nav-link">Einstellungen</a>
-      <a href="admin.html" class="nav-link">Admin</a>
+        <a href="market.html" class="nav-link">Markt</a>
+        <a href="portfolio.html" class="nav-link active-link">Portfolio</a>
+        <a href="settings.html" class="nav-link">Einstellungen</a>
+        <a href="admin.html" class="nav-link" id="adminLink" style="display: none;">Admin</a>
     </div>
 
     <div class="navbar-right">
-      <button class="logout-button" id="logoutBtn">Abmelden</button>
+        <button class="logout-button" id="logoutBtn">Abmelden</button>
     </div>
 
     <div class="mobile-menu" id="mobileMenu" style="display: none;">
-      <a href="market.html" class="nav-link">Markt</a>
-      <a href="portfolio.html" class="nav-link">Portfolio</a>
-      <a href="settings.html" class="nav-link">Einstellungen</a>
-      <a href="admin.html" class="nav-link">Admin</a>
-      <button class="logout-button" id="mobileLogoutBtn">Abmelden</button>
+        <a href="market.html" class="nav-link">Markt</a>
+        <a href="portfolio.html" class="nav-link">Portfolio</a>
+        <a href="settings.html" class="nav-link">Einstellungen</a>
+        <a href="admin.html" class="nav-link" id="mobileAdminLink" style="display: none;">Admin</a>
+        <button class="logout-button" id="mobileLogoutBtn">Abmelden</button>
     </div>
-  </nav>
+</nav>
 
-  <!-- Main Content -->
-  <div class="market-page">
+<!-- Main Content -->
+<div class="market-page">
     <div class="empty-state">
-      <div class="empty-icon">📊</div>
-      <h3>Portfolio-Feature kommt bald</h3>
-      <p>Diese Funktionalität wird in einer zukünftigen Version implementiert.</p>
-      <a href="market.html" class="btn">Zurück zum Markt</a>
+        <div class="empty-icon">📊</div>
+        <h3>Portfolio-Feature kommt bald</h3>
+        <p>Diese Funktionalität wird in einer zukünftigen Version implementiert.</p>
+        <a href="market.html" class="btn">Zurück zum Markt</a>
     </div>
-  </div>
+</div>
 
-  <script src="assets/js/utils.js"></script>
-  <script src="assets/js/navigation.js"></script>
+<script src="assets/js/utils.js"></script>
+<script src="assets/js/navigation.js"></script>
 </body>
 </html>

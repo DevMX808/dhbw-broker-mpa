@@ -53,29 +53,21 @@ class TokenManager {
     static getUserInfo() {
         const token = this.getToken();
         if (!token) {
-            console.log('🔍 TokenManager.getUserInfo: No token found');
             return null;
         }
 
         const payload = this.parseJWT(token);
         if (!payload) {
-            console.log('🔍 TokenManager.getUserInfo: Failed to parse JWT payload');
             return null;
         }
 
-        console.log('🔍 TokenManager.getUserInfo - Raw JWT Payload:', payload);
-
-        const userInfo = {
+        return {
             id: payload.sub,
             email: payload.email,
             firstName: payload.given_name || payload.firstName || '',
             lastName: payload.family_name || payload.lastName || '',
             roles: payload.roles || []
         };
-
-        console.log('🔍 TokenManager.getUserInfo - Processed user info:', userInfo);
-
-        return userInfo;
     }
 }
 
@@ -98,7 +90,6 @@ class HttpClient {
 
         try {
             const response = await fetch(`${API_CONFIG.baseUrl}${url}`, config);
-
 
             const contentType = response.headers.get('content-type');
             if (contentType && contentType.includes('text/html')) {
@@ -189,12 +180,8 @@ class FormValidator {
     }
 
     static showFieldError(fieldElement, errorMessage) {
-
         this.clearFieldError(fieldElement);
-
-
         fieldElement.classList.add('error');
-
 
         const errorDiv = document.createElement('div');
         errorDiv.className = 'field-error';
@@ -223,19 +210,16 @@ class FormValidator {
     }
 
     static showGlobalError(formElement, message) {
-
         const existingError = formElement.querySelector('.error-message');
         if (existingError) {
             existingError.remove();
         }
-
 
         const errorDiv = document.createElement('div');
         errorDiv.className = 'error-message';
         errorDiv.setAttribute('role', 'alert');
         errorDiv.setAttribute('aria-live', 'polite');
         errorDiv.textContent = message;
-
 
         formElement.insertBefore(errorDiv, formElement.firstChild);
     }
