@@ -1,218 +1,27 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8">
     <title>Ledgero Demo Broker</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" href="data:," />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="assets/css/base.css" />
-
-    <!-- Nur Page-spezifisches Styling (keine globale Datei geändert) -->
-    <style>
-        :root {
-            --brand: #c1121f;
-            --glass-bg: rgba(15,15,15,0.45);
-            --glass-border: rgba(255,255,255,0.06);
-            --text: #e5e7eb;
-            --muted: #9aa4b2;
-        }
-
-        body {
-            font-family: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-            color: var(--text);
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* sanfter, dunkler Verlauf vor dem Hintergrundbild */
-        .bg-overlay {
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            background:
-                    radial-gradient(1200px 600px at 10% 10%, rgba(193,18,31,0.25), transparent 50%),
-                    radial-gradient(1100px 700px at 90% 20%, rgba(193,18,31,0.12), transparent 55%),
-                    linear-gradient(180deg, rgba(0,0,0,0.55), rgba(0,0,0,0.75));
-            z-index: 0;
-        }
-
-        .wrap {
-            min-height: 100vh;
-            display: grid;
-            place-items: center;
-            padding: 2rem 1rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .glass-card {
-            width: min(720px, 96vw);
-            background: var(--glass-bg);
-            backdrop-filter: blur(22px);
-            -webkit-backdrop-filter: blur(22px);
-            border: 1px solid var(--glass-border);
-            border-radius: 0.9rem;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.4);
-            padding: 1.6rem 1.4rem;
-            display: grid;
-            gap: 1rem;
-            text-align: center;
-            animation: cardIn .45s ease-out both;
-        }
-
-        @keyframes cardIn {
-            from { opacity: 0; transform: translateY(8px) scale(.985); }
-            to   { opacity: 1; transform: translateY(0)    scale(1); }
-        }
-
-        .title {
-            font-size: clamp(1.6rem, 2.8vw, 2.1rem);
-            font-weight: 700;
-            letter-spacing: .02em;
-            color: #fff;
-            text-shadow: 0 0 16px rgba(193,18,31,.28);
-            margin: 0;
-        }
-
-        .subtitle {
-            margin: .25rem 0 0;
-            font-size: clamp(.95rem, 1.8vw, 1.05rem);
-            color: var(--muted);
-        }
-
-        .hint {
-            margin: .2rem auto 0;
-            display: inline-flex;
-            align-items: center;
-            gap: .5rem;
-            padding: .5rem .7rem;
-            border-radius: .6rem;
-            font-size: .95rem;
-            color: #ffe4e6;
-            background: rgba(193,18,31,.10);
-            border: 1px solid rgba(193,18,31,.25);
-            box-shadow: 0 0 7px rgba(193,18,31,.18), 0 0 16px rgba(193,18,31,.10);
-        }
-
-        .actions {
-            margin-top: .2rem;
-            display: flex;
-            justify-content: center;
-            gap: .6rem;
-            flex-wrap: wrap;
-        }
-
-        .btn-ghost,
-        .btn-primary {
-            border-radius: 20px;
-            font-weight: 600;
-            padding: .6rem 1.1rem;
-            font-size: .95rem;
-            cursor: pointer;
-            transition: transform .18s ease, background .18s ease, box-shadow .18s ease;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: .5rem;
-        }
-
-        .btn-primary {
-            background: rgba(193,18,31,.22);
-            border: 1px solid var(--brand);
-            color: var(--brand);
-            box-shadow: 0 0 0 rgba(0,0,0,0);
-        }
-        .btn-primary:hover {
-            background: rgba(193,18,31,.38);
-            transform: translateY(-1px);
-            box-shadow: 0 6px 20px rgba(193,18,31,.18);
-        }
-
-        .btn-ghost {
-            background: rgba(248,250,252,.08);
-            border: 1px solid rgba(248,250,252,.22);
-            color: #e2e8f0;
-        }
-        .btn-ghost:hover {
-            background: rgba(248,250,252,.15);
-            transform: translateY(-1px);
-        }
-
-        .status {
-            margin-top: .25rem;
-            font-size: .9rem;
-            color: var(--muted);
-        }
-
-        .spinner {
-            width: 18px;
-            height: 18px;
-            border: 3px solid rgba(255,255,255,.18);
-            border-top-color: var(--brand);
-            border-radius: 9999px;
-            animation: spin .7s linear infinite;
-        }
-        @keyframes spin { to { transform: rotate(360deg); } }
-
-        /* noscript Hinweis */
-        .noscript {
-            margin-top: .5rem;
-            font-size: .9rem;
-            color: #fca5a5;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="data:,">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/base.css">
 </head>
 <body>
-<div class="bg-overlay" aria-hidden="true"></div>
-
-<div class="wrap">
-    <div class="glass-card" role="region" aria-labelledby="title">
-        <h1 id="title" class="title">Ledgero Demo Broker</h1>
-        <p class="subtitle">Du wirst automatisch weitergeleitet …</p>
-
-        <div class="hint" aria-hidden="true">
-            <span class="spinner" style="width:16px;height:16px;border-width:2px;"></span>
-            <span>Falls nicht, nutze einen der Buttons unten.</span>
-        </div>
-
-        <div class="actions">
-            <a class="btn-primary" href="account.html" id="go-account">
-                Starten
-            </a>
-            <button class="btn-ghost" type="button" id="retry">
-                Erneut versuchen
-            </button>
-        </div>
-
-        <p class="status" id="status" aria-live="polite"></p>
-
-        <noscript>
-            <p class="noscript">JavaScript ist deaktiviert. Bitte klicke auf „Starten“, um fortzufahren.</p>
-        </noscript>
+<div class="page page--center">
+    <div style="text-align: center;">
+        <h1>Ledgero Demo Broker</h1>
+        <p>Sie werden automatisch weitergeleitet...</p>
+        <p><a href="account.html">Falls die Weiterleitung nicht funktioniert, klicken Sie hier</a></p>
     </div>
 </div>
 
 <script src="assets/js/utils.js"></script>
 <script>
-    // sanfte Auto-Weiterleitung
-    const target = 'account.html';
-    const statusEl = document.getElementById('status');
-    const go = () => { window.location.href = target; };
-
-    // sofort versuchen – wenn das Routing greift, ist die Seite ohnehin gleich weg
-    setTimeout(go, 900);
-
-    // Fallback-Interaktionen
-    document.getElementById('retry').addEventListener('click', () => {
-        statusEl.textContent = 'Leite weiter …';
-        go();
-    });
-    document.getElementById('go-account').addEventListener('click', () => {
-        statusEl.textContent = 'Öffne Account …';
-    });
+    window.location.href = 'account.html';
 </script>
 </body>
 </html>
